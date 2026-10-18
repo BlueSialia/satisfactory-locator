@@ -1,0 +1,16 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE="$1"
+FIRST_LINE=$(head -n 1 "$COMMIT_MSG_FILE")
+
+PATTERN='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-zA-Z0-9._-]+\))?!?: .+'
+
+if echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
+  exit 0
+fi
+
+echo "Invalid commit message format."
+echo "Expected: type[(optional scope)][!]: description"
+echo "Accepted types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+echo "Received: $FIRST_LINE"
+exit 1

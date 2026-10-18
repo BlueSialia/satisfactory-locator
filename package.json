@@ -1,0 +1,64 @@
+{
+  "name": "satisfactory-locator",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Find Satisfactory factory locations that satisfy multiple resource-node proximity requirements.",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "Jorge Domínguez Arnáez (BlueSialia)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueSialia/satisfactory-locator.git"
+  },
+  "homepage": "https://bluesialia.github.io/satisfactory-locator/",
+  "bugs": {
+    "url": "https://github.com/BlueSialia/satisfactory-locator/issues"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "generate:data": "node scripts/generate-resource-data.mjs",
+    "predev": "npm run generate:data",
+    "dev": "vite",
+    "prebuild": "npm run generate:data",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src test scripts vite.config.ts package.json tsconfig.json biome.json",
+    "format": "biome format --write src test scripts vite.config.ts package.json tsconfig.json biome.json",
+    "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "knip": "knip",
+    "size": "npm run build && size-limit",
+    "check": "npm run lint && npm run typecheck && npm run test:coverage && npm run size && npm run knip",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "polygon-clipping": "^0.15.7"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@size-limit/preset-small-lib": "^12.1.0",
+    "@types/leaflet": "^1.9.16",
+    "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^5.0.5",
+    "knip": "^6.41.0",
+    "size-limit": "^11.2.0",
+    "typescript": "^5.7.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5",
+    "zod": "^4.6.7"
+  },
+  "size-limit": [
+    {
+      "path": "dist/assets/*.js",
+      "limit": "300 KB"
+    },
+    {
+      "path": "dist/assets/*.css",
+      "limit": "30 KB"
+    }
+  ]
+}

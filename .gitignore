@@ -1,0 +1,14 @@
+.direnv
+dist/
+public/data/
+coverage/
+node_modules/
+.npm-cache/
+.env
+.env.*
+.envrc.local
+.DS_Store
+*.log
+*.tsbuildinfo
+*.swp
+.vite/
